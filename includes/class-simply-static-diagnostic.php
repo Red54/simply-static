@@ -92,7 +92,13 @@ class Simply_Static_Diagnostic {
 	public function is_destination_host_a_valid_url() {
 		$destination_scheme = $this->options->get( 'destination_scheme' );
 		$destination_host = $this->options->get( 'destination_host' );
-		$destination_url = $destination_scheme . '://' . $destination_host;
+		if ( $destination_scheme != '' ) {
+			$destination_url = $destination_scheme . '://' . $destination_host;
+		} elseif ( $destination_host != '' ) {
+			$destination_url = '/' . $destination_host;
+		} else {
+			$destination_url = '';
+		}
 		$label = sprintf( __( 'Checking if Destination URL <code>%s</code> is valid', 'simply-static' ), $destination_url );
 		return array(
 			'label' => $label,

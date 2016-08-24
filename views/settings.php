@@ -40,6 +40,7 @@
 							</th>
 							<td>
 								<select id='destinationScheme' name='destination_scheme'>
+									<option value='' <?php sist_selected_if( $this->destination_scheme == '' ) ?>>/</option>
 									<option value='http' <?php sist_selected_if( $this->destination_scheme == 'http' ) ?>>http://</option>
 									<option value='https' <?php sist_selected_if( $this->destination_scheme == 'https' ) ?>>https://</option>
 								</select>

@@ -384,7 +384,13 @@ class Simply_Static_Archive_Manager {
 				return $pages_processed;
 			} else {
 				if ( $pages_processed == $total_pages ) {
-					$destination_url = $this->options->get('destination_scheme' ) . '://' . $this->options->get( 'destination_host' );
+					if ( $this->options->get('destination_scheme') != '' ) {
+						$destination_url = $this->options->get('destination_scheme' ) . '://' . $this->options->get( 'destination_host' );
+					} elseif ( $this->options->get('destination_host') != '' ) {
+						$destination_url = '/' . $this->options->get( 'destination_host' );
+					} else {
+						$destination_url = '';
+					}
 					$message = __( 'Destination URL:', 'simply-static' ) . ' <a href="' . $destination_url .'" target="_blank">' . $destination_url . '</a>';
 					$this->save_status_message( $message, 'destination_url' );
 				}
