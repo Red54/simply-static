@@ -444,6 +444,7 @@ class Simply_Static {
 			header( 'Content-Type: application/zip, application/octet-stream; charset=' . get_option( 'blog_charset' ), true );
 			header( 'Pragma: no-cache' );
 			header( 'Expires: 0' );
+			if (ob_get_level()) ob_end_clean();
 			readfile( path_join( self::$instance->options->get( 'temp_files_dir' ), $filename ) );
 			exit();
 		}
